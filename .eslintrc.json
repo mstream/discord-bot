@@ -1,0 +1,60 @@
+{
+	"extends": "eslint:recommended",
+	"env": {
+		"node": true,
+		"es6": true
+	},
+	"parserOptions": {
+		"ecmaVersion": 2021
+	},
+	"rules": {
+    "array-bracket-newline": [
+      "error", 
+      {"minItems": 2, "multiline": true}
+    ],
+    "array-element-newline": [
+      "error", 
+      {"minItems": 2, "multiline": true}
+    ],
+    "comma-dangle": [
+      "error", 
+      "always-multiline"
+    ],
+    "function-call-argument-newline": [
+      "error", 
+      "always"
+    ],
+    "function-paren-newline": [
+      "error", 
+      {"minItems": 2}
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "newline-per-chained-call": [
+      "error",
+      { "ignoreChainWithDepth": 1 }
+    ],
+    "no-trailing-spaces": [
+      "error",
+      { "ignoreComments": false, "skipBlankLines": false}
+    ],
+    "one-var-declaration-per-line": [
+      "error", 
+      "always"
+    ],
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "next": "*", "prev": "block" },
+      { "blankLine": "always", "next": "*", "prev": "block-like" },
+      { "blankLine": "always", "next": "block", "prev": "*" },
+      { "blankLine": "always", "next": "block-like", "prev": "*" }
+    ],
+    "quotes": [
+      "error",
+      "backtick"
+    ]
+  }
+}
+
