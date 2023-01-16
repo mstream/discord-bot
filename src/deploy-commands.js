@@ -1,16 +1,16 @@
 const { REST, Routes } = require(`discord.js`)
 const { clientId, token } = require(`../auth/bot.json`)
 const guilds = require(`../auth/guilds.json`)
-const { Option, program } = require('commander');
+const { Option, program } = require(`commander`);
 const commands = require(`./commands/index.js`)
 
 const options = program
   .addOption(new Option(
-    '--guild <name>',
-    'guild name',
-  ).makeOptionMandatory()
-    .choices(Object.keys(guilds))
+    `--guild <name>`,
+    `guild name`,
   )
+.makeOptionMandatory()
+    .choices(Object.keys(guilds)))
   .parse()
   .opts()
 

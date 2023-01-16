@@ -23,7 +23,10 @@ module.exports = {
         )),
 
   async execute(
-    _1,
+    {
+      textToSpeech,
+      voiceAndPost,
+    },
     interaction,
   ) {
     const word = interaction.options.getString(`input`) ?? `dob`
@@ -36,13 +39,15 @@ module.exports = {
 
     const sentenceEnd = `yes yes shtib shtib shtib shtibidid shtibidi dabudu dabudu yes yes!`
 
-    await interaction.reply({
-      content: `${sentenceStart}${sentenceMiddle} ${sentenceEnd}`,
-      embeds: [
-        new EmbedBuilder()
-          .setImage(`https://media.tenor.com/p97W37yZba8AAAAd/tummy-kolo.gif`),
-      ],
-      tts: true,
+    await voiceAndPost({
+      embed: new EmbedBuilder()
+        .setImage(`https://media.tenor.com/p97W37yZba8AAAAd/tummy-kolo.gif`),
+      interaction,
+      soundFile: await textToSpeech.generateSpeechFile({
+        speed: 1.1,
+        text: `${sentenceStart}${sentenceMiddle} ${sentenceEnd}`,
+        voice: `Rishi`,
+      }),
     })
   },
 }

@@ -1,10 +1,21 @@
+const fs = require(`fs`)
+const os = require(`os`)
+const path = require(`node:path`)
 const { token } = require(`../auth/bot.json`)
 const { Client, Collection, Events, GatewayIntentBits } = require(`discord.js`)
 const { createAudioPlayer } = require(`@discordjs/voice`)
 
 const context = {
   player: createAudioPlayer(),
+  say: require(`say`),
+  tmpDir: fs.mkdtempSync(path.join(
+os.tmpdir(),
+`discord-bot`,
+)),
 }
+
+context.textToSpeech = require(`./text-to-speech.js`)(context)
+context.voiceAndPost = require(`./voice-and-post`)(context)
 
 const commands = require(`./commands/index.js`)
   .reduce(
@@ -55,6 +66,7 @@ client.on(
       )
     } catch (error) {
       console.error(error)
+
       if (interaction.isRepliable()) {
         await interaction.reply({
           content: `There was an error while executing this command!`,
