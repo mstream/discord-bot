@@ -6,6 +6,7 @@ const {
 } = require(`discord.js`)
 
 const {
+  AudioPlayerStatus,
   VoiceConnectionStatus,
   createAudioResource,
   entersState,
@@ -45,12 +46,14 @@ module.exports = {
     const voiceChannel = interaction?.member?.voice.channel
 
     if (!voiceChannel) {
-      interaction.reply({
+      await interaction.reply({
         content: `Please join a voice channel to use this command.`,
         ephemeral: true,
       })
       return
     }
+
+    await interaction.deferReply()
 
     const connection = await connectToChannel(voiceChannel)
 
@@ -68,9 +71,14 @@ module.exports = {
       )
 
       player.play(resource)
+      await entersState(
+        player,
+        AudioPlayerStatus.Playing,
+        3000,
+      )
     }
 
-    interaction.reply({
+    await interaction.editReply({
       embeds: [
         new EmbedBuilder()
           .setImage(`https://media.tenor.com/DPpYFfMVaSIAAAAC/factz-facts.gif`),

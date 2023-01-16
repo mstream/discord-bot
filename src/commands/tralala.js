@@ -12,7 +12,7 @@ module.exports = {
     _1,
     interaction,
   ) {
-    interaction.reply({
+    await interaction.reply({
       content: `Ooh, you touched my thralala. Mmm, my ding ding dong.`,
       embeds: [
         new EmbedBuilder()

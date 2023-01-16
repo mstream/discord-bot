@@ -36,7 +36,7 @@ module.exports = {
 
     const sentenceEnd = `yes yes shtib shtib shtib shtibidid shtibidi dabudu dabudu yes yes!`
 
-    interaction.reply({
+    await interaction.reply({
       content: `${sentenceStart}${sentenceMiddle} ${sentenceEnd}`,
       embeds: [
         new EmbedBuilder()

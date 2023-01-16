@@ -1,4 +1,4 @@
-const { token } = require(`../auth.json`)
+const { token } = require(`../auth/bot.json`)
 const { Client, Collection, Events, GatewayIntentBits } = require(`discord.js`)
 const { createAudioPlayer } = require(`@discordjs/voice`)
 
@@ -54,11 +54,13 @@ client.on(
         interaction,
       )
     } catch (error) {
-      console.error(error);
-      await interaction.reply({
-        content: `There was an error while executing this command!`,
-        ephemeral: true,
-      })
+      console.error(error)
+      if (interaction.isRepliable()) {
+        await interaction.reply({
+          content: `There was an error while executing this command!`,
+          ephemeral: true,
+        })
+      }
     }
   },
 )

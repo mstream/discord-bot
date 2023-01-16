@@ -18,6 +18,7 @@
   "dependencies": {
     "@discordjs/opus": "~0.8",
     "@discordjs/voice": "~0.14",
+    "commander": "^10",
     "discord.js": "^14",
     "ffmpeg-static": "^5",
     "sodium-native": "^4"
